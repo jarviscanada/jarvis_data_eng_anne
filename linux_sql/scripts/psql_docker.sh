@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# PSQL_Docker.sh script
+# The purpose of this script is to start/stop Docker and start/stop a PostgreSQL container. 
 
 # Checking arguments, starting with the case of invalid arguments.
 if [ "$1" != "start" ] && [ "$1" != "stop" ];
@@ -11,7 +12,7 @@ fi
 # If the command 'stop' is given, stop the running container.
 if [ "$1" = "stop" ];
 then
-    docker container stop jrvs-psql
+   docker container stop jrvs-psql
     echo "Container stopped."
     exit 0
 fi
@@ -27,7 +28,10 @@ then
     exit 1
 fi
 
-systemctl status docker || system start docker
+# Now starting the script where the command is "start [password]"
+
+# Checking to see if docker is running.
+systemctl status docker || systemctl start docker
 echo "Docker running."
 
 # Checks to see if the container is running.
@@ -49,12 +53,21 @@ fi
 
 # Checks if the container exists. If it doesn't, create it. If it does,
 # then run the existing container image.
-if [ "$docker container ls -a -f name=jrvs-psql | wc -l)" != "2" ];
+PGPASSWORD=$2
+
+if [ "$(docker container ls -a -f name=jrvs-psql | wc -l)" != "2" ];
 then
-    docker run --name jrvs-psql -e POSTGRES_PASSWORD=$2 -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres
+    docker run --name jrvs-psql -e POSTGRES_PASSWORD=$PGPASSWORD -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres
 else
     docker container start jrvs-psql
-echo "Docker container running!"
+echo "Docker container started!"
 fi
+
+sudo yum install -y postgresql
+echo "PostgreSQL installed."
+psql -h localhost -U postgres -W
+echo "Logged into PostgreSQL."
+postgres=#\l
+echo "The above are the existing databases."
 
 exit 0
