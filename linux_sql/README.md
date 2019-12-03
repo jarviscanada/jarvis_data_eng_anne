@@ -32,7 +32,7 @@ The bash agent runs two scripts: `host_info.sh` and `host_usage.sh`.
 
 In order to schedule `host_usage.sh` to execute once every minute, utilize crontab. In terminal, use the command `crontab -e` to edit scheduled tasks. Add the following code to schedule `host_usage.sh` to execute once a minute once installed on the server:
    ```
-   * * * * * * bash [server's local pathway]/host_usage.sh [localhost] [port number, e.g. 5432] [database name] [username] [user password]
+   * * * * * * bash [server's local pathway]/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log
    ```
 
 5. `queries.sql`: sample queries to demonstrate reports that are possible using the data that is currently collected through the Cluster Monitoring Agent, and executed using:
