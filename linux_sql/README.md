@@ -3,7 +3,7 @@
 Cluster Monitor Agent is an internal tool that monitors the cluster resources. Irecords the hardware specifications of each node (server), and monitors its resource usage (e.g. CPU/memory) in realtime. The collected data is stored in a database found in a designated primary server node (Server no. 1). This tool allows for the Linux Cluster Administration (LCA) team to use the data to generate reports for future resource planning, such as adding or removing servers based on their usage and activity.
 
 ## Architecture and Design
-![Generalized architecture for the Cluster Monitor Agent](/assets/architecture.png)
+![Generalized architecture for the Cluster Monitor Agent](assets/architecture.png)
 
 The servers will be set up using the architecture above.
 
