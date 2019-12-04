@@ -21,8 +21,8 @@ The bash agent runs two scripts: `host_info.sh` and `host_usage.sh`.
 
 ## Usage 
 1. `psql_docker.sh`: there are two (2) input options for this script.
-   to start: `./psql_docker.sh start [user password]
-   to stop: `_psql_docker.sh stop`
+	* to start: `./psql_docker.sh start [user password]`
+	* to stop: `_psql_docker.sh stop`
 2. `ddl.sql`: to set up the database, use the below command.
    `psql -h [hostname] -U [username] -p [port number] -c "ddl.sql"
 3. `host_info.sh`: used to collect server hardware information and to store it in the databaseand executed using the following command.
