@@ -24,11 +24,11 @@ The bash agent runs two scripts: `host_info.sh` and `host_usage.sh`.
 	* to start: `./psql_docker.sh start [user password]`
 	* to stop: `_psql_docker.sh stop`
 2. `ddl.sql`: to set up the database, use the below command.
-   `psql -h [hostname] -U [username] -p [port number] -c "ddl.sql"
+	* `psql -h [hostname] -U [username] -p [port number] -c "ddl.sql"
 3. `host_info.sh`: used to collect server hardware information and to store it in the databaseand executed using the following command.
-   `./host_info.sh [host name] [database name] [username] [user password]`
+	* `./host_info.sh [host name] [database name] [username] [user password]`
 4. `host_usage.sh`: used to collect server data regarding its memory and CPU usage and executed using the following command.
-  `./host_usage.sh [hostname] [database name] [username] [user password]`
+	* `./host_usage.sh [hostname] [database name] [username] [user password]`
 
 In order to schedule `host_usage.sh` to execute once every minute, utilize crontab. In terminal, use the command `crontab -e` to edit scheduled tasks. Add the following code to schedule `host_usage.sh` to execute once a minute once installed on the server:
    ```
@@ -36,7 +36,7 @@ In order to schedule `host_usage.sh` to execute once every minute, utilize cront
    ```
 
 5. `queries.sql`: sample queries to demonstrate reports that are possible using the data that is currently collected through the Cluster Monitoring Agent, and executed using:
-   `psql -h [hostname] -U [username] -p [port number] -c "queries.sql"`
+	* `psql -h [hostname] -U [username] -p [port number] -c "queries.sql"`
 
 ## Improvements
 
