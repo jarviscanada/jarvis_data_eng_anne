@@ -30,12 +30,12 @@ The bash agent runs two scripts: `host_info.sh` and `host_usage.sh`.
 4. `host_usage.sh`: used to collect server data regarding its memory and CPU usage and executed using the following command.
 	* `./host_usage.sh [hostname] [database name] [username] [user password]`
 
-In order to schedule `host_usage.sh` to execute once every minute, utilize crontab. In terminal, use the command `crontab -e` to edit scheduled tasks. Add the following code to schedule `host_usage.sh` to execute once a minute once installed on the server:
+5. `crontab`: In order to schedule `host_usage.sh` to execute once every minute, utilize crontab. In terminal, use the command `crontab -e` to edit scheduled tasks. Add the following code to schedule `host_usage.sh` to execute once a minute once installed on the server:
    ```
    * * * * * * bash [server's local pathway]/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log
    ```
 
-5. `queries.sql`: sample queries to demonstrate reports that are possible using the data that is currently collected through the Cluster Monitoring Agent, and executed using:
+6. `queries.sql`: sample queries to demonstrate reports that are possible using the data that is currently collected through the Cluster Monitoring Agent, and executed using:
 	* `psql -h [hostname] -U [username] -p [port number] -c "queries.sql"`
 
 ## Improvements
