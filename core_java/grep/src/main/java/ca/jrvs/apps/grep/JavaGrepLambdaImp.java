@@ -59,7 +59,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
             // is a file, map to transform the filename to a String, and then collect it in the
             // form of a List.
             List<String> result = paths
-                    .filter(Files::isRegularFile);
+                    .filter(file -> Files.isRegularFile(file));
                     .map(file -> file.toString());
                     .collect(Collectors.toList());
             // Transfer the file collection from List<String> result to List<String> fileList which
