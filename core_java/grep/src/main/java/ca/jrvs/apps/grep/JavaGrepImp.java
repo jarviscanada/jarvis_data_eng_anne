@@ -35,25 +35,30 @@ public class JavaGrepImp implements JavaGrep {
     // Traverses a given directory and returns all files.
     @Override
     void process() throws IOException{
-        // List of files.
-        List<File> fileList = listFiles(rootPath);
-        // List of text lines derived from the list of files.
-        List<String> lines = new ArrayList<>();
-        // Subset of the list of text lines made up of lines that match the regex.
-        List<String> matchedLines = new ArrayList<>();
 
-        // Go through every file and read the lines.
-        // If the line matches the given regex, record the line and write all of the
-        // matched lines to file.
-        for (File file: fileList){
-            lines = readLines(file);
-            for (String line: lines){
-                if (containsPattern(line)){
-                    matchedLines.add(line);
+        try {
+            // List of files.
+            List<File> fileList = listFiles(rootPath);
+            // List of text lines derived from the list of files.
+            List<String> lines = new ArrayList<>();
+            // Subset of the list of text lines made up of lines that match the regex.
+            List<String> matchedLines = new ArrayList<>();
+
+            // Go through every file and read the lines.
+            // If the line matches the given regex, record the line and write all of the
+            // matched lines to file.
+            for (File file: fileList) {
+                lines = readLines(file);
+                for (String line : lines) {
+                    if (containsPattern(line)) {
+                        matchedLines.add(line);
+                    }
                 }
             }
+            writeToFile(matchedLines);
+        } catch(IOException e){
+            e.printStackTrace();
         }
-        writeToFile(matchedLines);
     }
 
     // List the files in a given directory, including files in subdirectories.
@@ -125,11 +130,10 @@ public class JavaGrepImp implements JavaGrep {
             // NOTE: creates a new, empty file named by abstract pathname only if a file
             //       with this name does not already exist.
             Files.createFile(file);
-        } catch (IOException ignore) {
-            // Literally do nothing if an I/O error occurs.
-            // IOException is also thrown when parent directory does not exist but this
-            // error is very unlikely given that the file path is generated in this very
-            // function and should be a valid file path.
+        } catch (IOException e) {
+            // NOTE: changed from ignore because something should be done even if
+            //       the file wasn't created.
+            e.printStackTrace();
         }
         Files.write(file, lines);
     }
