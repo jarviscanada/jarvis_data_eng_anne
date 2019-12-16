@@ -70,9 +70,9 @@ public class JavaGrepImp implements JavaGrep {
 
         // If there are no files or subdirectories in the given directory,
         // there's nothing to list so return null.
-        if (list == null){
-            return null;
-        }
+        //if (list == null){
+        //    return null;
+        //}
 
         try {
             for (File filename: list) {
