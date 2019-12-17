@@ -1,6 +1,6 @@
-#Introduction
+# Introduction
 
-`grep` is a Java implementation of the `grep` Bash command-line utility used for searching through plain-text data sets for lines that match a text pattern.
+grep` is a Java implementation of the `grep` Bash command-line utility used for searching through plain-text data sets for lines that match a text pattern.
 
 The app is given a directory and searches for a text pattern recursively. (This means that the app searches for the text pattern in the files in the deepest subdirectory first, then moves upwards until the algorithm is back in the root/given directory.)
 
