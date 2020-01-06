@@ -1,6 +1,8 @@
 ## Introduction
 
-Cluster Monitor Agent is an internal tool that monitors the cluster resources. Irecords the hardware specifications of each node (server), and monitors its resource usage (e.g. CPU/memory) in realtime. The collected data is stored in a database found in a designated primary server node (Server no. 1). This tool allows for the Linux Cluster Administration (LCA) team to use the data to generate reports for future resource planning, such as adding or removing servers based on their usage and activity.
+Cluster Monitor Agent is an internal tool that monitors the server cluster resources. It records the hardware specifications of each node (server) and monitors resource usage such as CPU and memory utilization in real time.
+
+The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity. 
 
 ## Architecture and Design
 ![Generalized architecture for the Cluster Monitor Agent](assets/architecture.png)
@@ -24,7 +26,7 @@ The bash agent runs two scripts: `host_info.sh` and `host_usage.sh`.
 	* to start: `./psql_docker.sh start [user password]`
 	* to stop: `_psql_docker.sh stop`
 2. `ddl.sql`: to set up the database, use the below command.
-	* `psql -h [hostname] -U [username] -p [port number] -c "ddl.sql"
+	* `psql -h [hostname] -U [username] -p [port number] -c "ddl.sql"`
 3. `host_info.sh`: used to collect server hardware information and to store it in the databaseand executed using the following command.
 	* `./host_info.sh [host name] [database name] [username] [user password]`
 4. `host_usage.sh`: used to collect server data regarding its memory and CPU usage and executed using the following command.
