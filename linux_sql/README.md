@@ -5,7 +5,7 @@ Cluster Monitor Agent is an internal tool that monitors the server cluster resou
 The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity. 
 
 ## Architecture and Design
-![Generalized architecture for the Cluster Monitor Agent](assets/architecture.png)
+<p align="center"><img src="assets/architecture.png" alt="Generalized architecture for the Cluster Monitor Agent." /></p>
 
 The servers will be set up using the architecture above.
 
