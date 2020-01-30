@@ -77,21 +77,25 @@ public class OrderDAO extends DataAccessObject<Order> {
         return order;
     }
 
+    // Not implemented.
     @Override
     public List<Order> findAll() {
         return null;
     }
 
+    // Not implemented.
     @Override
     public Order update(Order dto) {
         return null;
     }
 
+    // Not implemented.
     @Override
     public Order create(Order dto) {
         return null;
     }
 
+    // Not implemented.
     @Override
     public void delete(long id) {
     }
