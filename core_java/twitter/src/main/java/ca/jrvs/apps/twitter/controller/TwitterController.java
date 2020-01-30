@@ -26,6 +26,11 @@ public class TwitterController implements Controller {
         this.service = service;
     }
 
+    /**
+     * Takes the parsed command line given by the terminal and acts on the options given.
+     * @param args -> in the form and order of [TwitterCLIApp, post, "given tweet text", "longitude:latitude"]
+     * @return service layer postTweet()
+     */
     @Override
     public Tweet postTweet(String[] args) {
         if (args.length != 3){
@@ -58,6 +63,11 @@ public class TwitterController implements Controller {
         return service.postTweet(postTweet);
     }
 
+    /**
+     * Takes the parsed command line given by the terminal and acts on the options given.
+     * @param args -> in the form and order of [TwitterCLIApp, show, "tweet ID"]
+     * @return service layer showTweet()
+     */
     @Override
     public Tweet showTweet(String[] args) {
         if (args.length != 2){
@@ -69,6 +79,13 @@ public class TwitterController implements Controller {
         return service.showTweet(idStr);
     }
 
+    /**
+     * Takes the parsed command line given by the terminal and acts on the options given.
+     * @param args -> in the form and order of [TwitterCLIApp, delete, "tweet ID(, tweet ID,
+     *             as many tweet IDs as the user would like to include as long as they are
+     *             separated by comma)"]
+     * @return service layer deleteTweets()
+     */
     @Override
     public List<Tweet> deleteTweet(String[] args) {
         if (args.length != 2) {
