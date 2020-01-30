@@ -88,6 +88,6 @@ public class TwitterCLIApp {
         System.out.println("Tweet ID: " + id);
         System.out.println("Created at: " + created_at);
         System.out.println("Content: " + text);
-        System.out.println("Tweet sent from location: " + String.valueOf(longitude) + ":" + String.valueOf(latitude));
+        System.out.println("Tweet sent from location: " + longitude + ":" + latitude);
     }
 }

@@ -64,18 +64,10 @@ public class TwitterService implements Service {
         boolean latitudeOutOfRange;
 
         // Checking longitude coordinate to make sure it falls in valid range.
-        if (longitude > 180.1 || longitude < -180.1){
-            longitudeOutOfRange = true;
-        } else {
-            longitudeOutOfRange = false;
-        }
+        longitudeOutOfRange = longitude > 180.1 || longitude < -180.1;
 
         // Checking latitude coordinate to make sure it falls in valid range.
-        if (latitude > 90.1 || latitude < -90.1){
-            latitudeOutOfRange = true;
-        } else {
-            latitudeOutOfRange = false;
-        }
+        latitudeOutOfRange = latitude > 90.1 || latitude < -90.1;
 
         // Different IllegalArgumentExceptions based on if one or both coordinates are invalid coordinate numbers.
         if (longitudeOutOfRange && latitudeOutOfRange){
