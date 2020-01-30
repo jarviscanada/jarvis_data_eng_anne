@@ -43,6 +43,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
         return customer;
     }
 
+    // Not implemented in the JDBC course.
     @Override
     public List<Customer> findAll() {
         return null;
