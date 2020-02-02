@@ -2,8 +2,6 @@ package ca.jrvs.apps.twitter.model;
 
 import com.fasterxml.jackson.annotation.*;
 
-import java.util.Date;
-
 @JsonPropertyOrder(
         {
                 "created_at",
