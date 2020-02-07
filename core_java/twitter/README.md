@@ -37,8 +37,8 @@ Below is an example JSON:
 ```
 {
     "created_at":"Thu Jan 23, 2020 08:30:19 +0000",
-    "id":"",
-    "id_str":"",
+    "id":10240128,
+    "id_str":"10240128",
     "text":"testing, testing!! controller layer testing. sup, the time is approx 1579792767886",
     "entities":
         {
