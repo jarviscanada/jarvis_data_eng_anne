@@ -55,6 +55,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "lastTradeTime",
         "isUSMarketOpen"
 })
+
 public class IexQuote implements Serializable
 {
 
