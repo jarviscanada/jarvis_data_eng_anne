@@ -9,7 +9,7 @@ public class ResponseExceptionUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(ResponseExceptionUtil.class);
 
-    public static ResponseStatusException getResponsesStatusException(Exception e){
+    public static ResponseStatusException getResponseStatusException(Exception e){
         if (e instanceof IllegalArgumentException) {
             logger.debug("Invalid input", e);
             return new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
