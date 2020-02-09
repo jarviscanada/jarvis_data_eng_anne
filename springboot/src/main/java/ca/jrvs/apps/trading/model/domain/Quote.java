@@ -18,4 +18,12 @@ public class Quote implements Entity<String>{
     public void setId(String id) {
         this.ticker = id;
     }
+
+    public void getTicker(){
+        getId();
+    }
+
+    public void setTicker(String ticker){
+        setId(ticker);
+    }
 }
