@@ -19,11 +19,11 @@ public class Quote implements Entity<String>{
         this.ticker = id;
     }
 
-    public void getTicker(){
-        getId();
+    public String getTicker(){
+        return ticker;
     }
 
     public void setTicker(String ticker){
-        setId(ticker);
+        this.ticker = ticker;
     }
 }
