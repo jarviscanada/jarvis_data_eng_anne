@@ -2,10 +2,13 @@ package ca.jrvs.apps.grep;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
 
@@ -33,7 +36,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
 
         // Modified from https://www.mkyong.com/java8/java-8-stream-read-a-file-line-by-line/
         // Come back and change this if I can figure out a better method.
-        try (Stream<String> lines = Files.lines(Paths.get(inputFile))) {
+        try (Stream<String> lines = Files.lines(Paths.get(String.valueOf(inputFile)))) {
             lines.forEach(line -> lineList.add(line));
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,13 +61,12 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
             // found in subdirectories. From there, filter to make sure that the argument given
             // is a file, map to transform the filename to a String, and then collect it in the
             // form of a List.
-            List<String> result = paths
-                    .filter(file -> Files.isRegularFile(file));
-                    .map(file -> file.toString());
+            List<String> result = (List<String>) paths.filter(file -> Files.isRegularFile(file))
+                    .map(file -> file.toString())
                     .collect(Collectors.toList());
             // Transfer the file collection from List<String> result to List<String> fileList which
             // exists in this method external from the try.
-            result.forEach(file -> fileList.add(file));
+            result.forEach(file -> fileList.add(new File(file)));
         } catch (IOException e) {
             e.printStackTrace();
         }
