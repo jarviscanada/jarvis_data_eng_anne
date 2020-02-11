@@ -2,10 +2,12 @@ package ca.jrvs.apps.grep;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Stream;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
 
@@ -33,7 +35,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
 
         // Modified from https://www.mkyong.com/java8/java-8-stream-read-a-file-line-by-line/
         // Come back and change this if I can figure out a better method.
-        try (Stream<String> lines = Files.lines(Paths.get(inputFile))) {
+        try (Stream<String> lines = Files.lines(Paths.get(String.valueOf(inputFile)))) {
             lines.forEach(line -> lineList.add(line));
         } catch (IOException e) {
             e.printStackTrace();

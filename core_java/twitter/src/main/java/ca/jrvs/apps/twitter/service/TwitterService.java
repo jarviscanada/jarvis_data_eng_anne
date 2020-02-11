@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TwitterService implements Service {
 
-    private CrdDao<Tweet, String> dao;
+    private CrdDao dao;
 
     @Autowired
     public TwitterService(CrdDao dao){
@@ -25,7 +25,7 @@ public class TwitterService implements Service {
     public Tweet postTweet(Tweet tweet) {
         validatePostTweet(tweet);
         // Creating Tweet via DAO.
-        return dao.create(tweet);
+        return (Tweet) dao.create(tweet);
     }
 
     /**
@@ -96,7 +96,7 @@ public class TwitterService implements Service {
     public Tweet showTweet(String id) {
         validateTweetID(id);
         //validateTweetField(fields);
-        return dao.findById(id);
+        return (Tweet) dao.findById(id);
     }
 
     /**
@@ -115,7 +115,7 @@ public class TwitterService implements Service {
             // Check that the tweet ID is valid.
             validateTweetID(id);
             // If valid, create Tweet object using the Tweet ID.
-            Tweet deletedTweet = dao.deleteById(id);
+            Tweet deletedTweet = (Tweet) dao.deleteById(id);
             // Collect the Tweet object into the list of tweets to be deleted.
             deletedTweets.add(deletedTweet);
         }
