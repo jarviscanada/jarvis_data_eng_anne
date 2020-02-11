@@ -69,20 +69,16 @@ public class JavaGrepImp implements JavaGrep {
 
         // If there are no files or subdirectories in the given directory,
         // there's nothing to list so return null.
-        try {
-            for (File filename: list) {
-                // To account for files in subdirectories, obtain a list of files in those
-                // subdirectories and then add them to the overarching file list.
-                if (filename.isDirectory()) {
-                    List<File> subdirectoryContents = File.listFiles(filename.getAbsolutePath());
-                    fileList.addAll(subdirectoryContents);
-                }
-                // If the filename isn't a directory, add it to the list.
-                else {
-                    fileList.add(filename);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        for (File filename: list) {
+            // To account for files in subdirectories, obtain a list of files in those
+            // subdirectories and then add them to the overarching file list.
+            if (filename.isDirectory()) {
+                List<File> subdirectoryContents = listFiles(filename.toString());
+                fileList.addAll(subdirectoryContents);
+            }
+            // If the filename isn't a directory, add it to the list.
+            else {
+                fileList.add(filename);
             }
         }
         return fileList;
@@ -119,7 +115,7 @@ public class JavaGrepImp implements JavaGrep {
 
     //
     @Override
-    void writeToFile(List<String> lines) throws IOException{
+    public void writeToFile(List<String> lines) throws IOException{
         Path file = (new File(outFile)).toPath();
         try{
             // NOTE: creates a new, empty file named by abstract pathname only if a file
