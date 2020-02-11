@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -34,7 +33,7 @@ public class JavaGrepImp implements JavaGrep {
 
     // Traverses a given directory and returns all files.
     @Override
-    void process() throws IOException{
+    public void process() throws IOException{
 
         try {
             // List of files.
@@ -63,31 +62,23 @@ public class JavaGrepImp implements JavaGrep {
 
     // List the files in a given directory, including files in subdirectories.
     @Override
-    List<FIle> listFiles(String rootDir){
+    public List<File> listFiles(String rootDir){
         File root = new File(rootDir);
         File[] list = root.listFiles();
         List<File> fileList = new ArrayList<>();
 
         // If there are no files or subdirectories in the given directory,
         // there's nothing to list so return null.
-        //if (list == null){
-        //    return null;
-        //}
-
-        try {
-            for (File filename: list) {
-                // To account for files in subdirectories, obtain a list of files in those
-                // subdirectories and then add them to the overarching file list.
-                if (filename.isDirectory()) {
-                    List<File> subdirectoryContents = File.listFiles(filename.getAbsolutePath());
-                    fileList.addAll(subdirectoryContents);
-                }
-                // If the filename isn't a directory, add it to the list.
-                else {
-                    fileList.add(filename);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        for (File filename: list) {
+            // To account for files in subdirectories, obtain a list of files in those
+            // subdirectories and then add them to the overarching file list.
+            if (filename.isDirectory()) {
+                List<File> subdirectoryContents = listFiles(filename.toString());
+                fileList.addAll(subdirectoryContents);
+            }
+            // If the filename isn't a directory, add it to the list.
+            else {
+                fileList.add(filename);
             }
         }
         return fileList;
@@ -95,7 +86,7 @@ public class JavaGrepImp implements JavaGrep {
 
     // Read the text from the input file (line by line).
     @Override
-    List<String> readLines(File inputFile){
+    public List<String> readLines(File inputFile){
         List<String> listLines = new ArrayList<>();
 
         try {
@@ -117,14 +108,14 @@ public class JavaGrepImp implements JavaGrep {
 
     // Given a line, check to see if it matches given regex.
     @Override
-    boolean containsPattern(String line){
+    public boolean containsPattern(String line){
         // Built-in String.matches(pattern) to see if line matches given regex.
         return line.matches(this.regex);
     }
 
     //
     @Override
-    void writeToFile(List<String> lines) throws IOException{
+    public void writeToFile(List<String> lines) throws IOException{
         Path file = (new File(outFile)).toPath();
         try{
             // NOTE: creates a new, empty file named by abstract pathname only if a file
