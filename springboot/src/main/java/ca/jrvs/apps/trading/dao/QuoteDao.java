@@ -1,6 +1,7 @@
 package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.domain.Quote;
+import com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Repository
 public class QuoteDao implements CrudRepository<Quote, String> {
@@ -69,8 +72,6 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public <S extends Quote> List<S> saveAll(Iterable<S> quotes){
-        List<S> quoteList = new ArrayList<S>();
-
         // Check that there are quotes to save.
         int quoteCount = 0;
         for (S quote: quotes){
@@ -80,12 +81,19 @@ public class QuoteDao implements CrudRepository<Quote, String> {
             throw new IllegalArgumentException("Given iterable is empty. There are no quotes to save.");
         }
 
+        List<S> quoteList = new ArrayList<S>();
+        quotes.forEach(quote -> quoteList.add(quote));
+        quoteList.forEach(quote -> updateOne(quote));
+
         return quoteList;
     }
 
     @Override
     public List<Quote> findAll(){
-        return null;
+        // SELECT * FROM table_name
+        String selectSQL = "SELECT * FROM " + TABLE_NAME;
+        List<Quote> quotes = jdbcTemplate.query(selectSQL, BeanPropertyRowMapper.newInstance(Quote.class));
+        return quotes;
     }
 
     @Override
