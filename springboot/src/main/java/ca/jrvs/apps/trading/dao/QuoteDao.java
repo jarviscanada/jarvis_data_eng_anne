@@ -19,8 +19,6 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Repository
 public class QuoteDao implements CrudRepository<Quote, String> {

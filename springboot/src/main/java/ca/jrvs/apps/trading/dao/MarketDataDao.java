@@ -51,7 +51,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     }
 
     /**
-     * Get an IEX Quote (helper method
+     * Get an IEX Quote (helper method)
      * @param ticker
      * @throws IllegalArgumentException if a given ticker is invalid.
      * @throws DataRetrievalFailureException if HTTP request failed.
