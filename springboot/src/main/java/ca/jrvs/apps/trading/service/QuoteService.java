@@ -45,23 +45,24 @@ public class QuoteService {
     public void updateMarketData(){
         List<Quote> quotes = new ArrayList<Quote>();
         quotes = quoteDao.findAll();
+
+        // Get all quotes from the database.
         for (Quote quote: quotes){
             String ticker;
             Optional<IexQuote> updatedMarketData;
 
+            // For each ticker, obtain IEX quote.
             try {
                 ticker = quote.getTicker();
-                updatedMarketData = marketDataDao.findById(ticker);
+                IexQuote iexQuote = findIexQuoteByTicker(ticker);
+                quote = buildIdQuoteFromIexQuote(iexQuote);
             } catch (IllegalArgumentException e){
                 throw new IllegalArgumentException("Cannot update entry due to invalid ticker.");
-            }
-
-            try {
-                IexQuote iexQuote = updatedMarketData.get();
-                buildIdQuoteFromIexQuote(iexQuote);
             } catch (DataAccessException e){
                 throw new RuntimeException("Failed to retrieve data from IEX.");
             }
+
+            quoteDao.save(quote);
         }
     }
 
