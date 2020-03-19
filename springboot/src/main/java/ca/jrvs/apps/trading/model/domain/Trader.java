@@ -1,6 +1,6 @@
 package ca.jrvs.apps.trading.model.domain;
 
-public class Trader implements Entity<String> {
+public class Trader implements Entity<Integer> {
 
     private Integer id;
     private String firstName;
@@ -10,13 +10,13 @@ public class Trader implements Entity<String> {
     private String email;
 
     @Override
-    public String getId() {
-        return String.valueOf(id);
+    public Integer getId() {
+        return id;
     }
 
     @Override
-    public void setId(String id) {
-        this.id = Integer.valueOf(id);
+    public void setId(Integer newId) {
+        this.id = newId;
     }
 
     public String getFirstName() {
