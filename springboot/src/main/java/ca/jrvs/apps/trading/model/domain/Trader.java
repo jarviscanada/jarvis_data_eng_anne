@@ -1,11 +1,13 @@
 package ca.jrvs.apps.trading.model.domain;
 
+import java.sql.Date;
+
 public class Trader implements Entity<Integer> {
 
     private Integer id;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String country;
     private String email;
 
@@ -35,11 +37,11 @@ public class Trader implements Entity<Integer> {
         this.lastName = lastName;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
