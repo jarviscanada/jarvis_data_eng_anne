@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 @Repository
 public class AccountDao extends JdbcCrudDao<Account> {
@@ -50,6 +51,11 @@ public class AccountDao extends JdbcCrudDao<Account> {
     @Override
     Class<Account> getEntityClass() {
         return Account.class;
+    }
+
+    public void updateAmountById(Integer id, Double updatedBalance){
+        Account account = findById(id).get();
+        account.setAmount(updatedBalance);
     }
 
     @Override

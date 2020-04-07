@@ -1,14 +1,19 @@
 package ca.jrvs.apps.trading.dao;
 
+import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
@@ -70,5 +75,24 @@ public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
     @Override
     public void deleteAll(Iterable<? extends SecurityOrder> iterable) {
         throw new UnsupportedOperationException("Not implemented.");
+    }
+
+    public List<SecurityOrder> findAllSecurityOrders(Account account){
+        List<SecurityOrder> orders = new ArrayList<SecurityOrder>();
+
+        int accountID = account.getId();
+        String selectSQL = "SELECT * FROM " + getTableName() + " WHERE account_id=?";
+        if (false) {
+            String filled = "AND status='FILLED'";
+        }
+
+        try{
+            orders = jdbcTemplate.query(selectSQL, BeanPropertyRowMapper.newInstance(SecurityOrder.class), accountID);
+        } catch (IncorrectResultSizeDataAccessException e){
+            logger.debug("Cannot find any security orders associated with account ID: " + accountID + e);
+        }
+
+        return orders;
+
     }
 }

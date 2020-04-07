@@ -33,10 +33,6 @@ public class QuoteService {
 
     /**
      * Update quote table against IEX source.
-     * TODO: get all quotes from the database
-     * TODO: for each ticker, get IEX Quote
-     * TODO: Convert IEX Quote to quote entity
-     * TODO: Persist quote to database.
      *
      * @throws ResourceNotFoundException if the ticker is not found from IEX.
      * @throws DataAccessException if unable to retrieve data.
@@ -100,5 +96,46 @@ public class QuoteService {
     public IexQuote findIexQuoteByTicker(String ticker){
         return marketDataDao.findById(ticker)
                 .orElseThrow(() -> new IllegalArgumentException(ticker + " is invalid"));
+    }
+
+    /**
+     * Validate (against IEX) and save given tickers to quote table.
+     * TODO: Get IEX quote(s).
+     * TODO: Convert each IEX quote to Quote entity.
+     * TODO: Persist the quote to database.
+     *
+     * @param tickers a list of tickers/symbols.
+     * @return a list of Quotes to save into the database.
+     * @throws IllegalArgumentException if ticker is not found from IEX.
+     */
+    public List<Quote> saveQuotes(List<String> tickers){
+        List<Quote> quotes = new ArrayList<Quote>();
+        for (String ticker: tickers){
+            Quote quoteToSave = saveQuote(ticker);
+            quotes.add(quoteToSave);
+        }
+        return quotes;
+    }
+
+    /**
+     * Helper method.
+     */
+    public Quote saveQuote(String ticker){
+        IexQuote iexQuote = findIexQuoteByTicker(ticker);
+        Quote quote = buildIdQuoteFromIexQuote(iexQuote);
+        saveQuote(quote);
+        return quote;
+    }
+
+    public Quote saveQuote(Quote quote){
+        return quoteDao.save(quote);
+    }
+
+    /**
+     * Find all quotes from the quote table.
+     * @return a list of quotes
+     */
+    public List<Quote> findAllQuotes(){
+        return quoteDao.findAll();
     }
 }

@@ -4,7 +4,7 @@ public class Account implements Entity<Integer> {
 
     private Integer id;
     private Integer traderID;
-    private Float amount;
+    private Double amount;
 
     @Override
     public Integer getId() {
@@ -24,11 +24,11 @@ public class Account implements Entity<Integer> {
         this.traderID = traderID;
     }
 
-    public Float getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }
