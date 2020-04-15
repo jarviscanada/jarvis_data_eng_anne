@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -25,8 +26,7 @@ public class MarketDataDaoIntTest {
         connectionManager.setDefaultMaxPerRoute(50);
         MarketDataConfig marketDataConfig = new MarketDataConfig();
         marketDataConfig.setHost("https://cloud.iexapis.com/v1/");
-        marketDataConfig.setToken("pk_c1454665e42c428f9a3dc9e99009ee5b");
-        //marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
+        marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
 
         dao = new MarketDataDao(connectionManager, marketDataConfig);
     }
@@ -34,13 +34,18 @@ public class MarketDataDaoIntTest {
     @Test
     public void findIexQuoteByTickers() throws IOException{
         // Successful pathway.
-        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB"));
-        assertEquals(2, quoteList.size());
+        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB", "MSFT", "TSLA"));
+        assertEquals(4, quoteList.size());
         assertEquals("AAPL", quoteList.get(0).getSymbol());
+        assertEquals("FB", quoteList.get(1).getSymbol());
 
-        // Unsuccessful pathway.
+        List<IexQuote> someWrongQuoteList = dao.findAllById(Arrays.asList("AAPLE", "FBOOK", "MSFT", "TESLA"));
+        assertEquals(1, someWrongQuoteList.size());
+        assertEquals("MSFT", someWrongQuoteList.get(0).getSymbol());
+
+        //Unsuccessful pathway.
         try{
-            dao.findAllById(Arrays.asList("AAPL", "FB2"));
+            dao.findAllById(Arrays.asList("AAPLS", "FB2"));
             fail();
         } catch (IllegalArgumentException e){
             assertTrue(true);
@@ -52,7 +57,7 @@ public class MarketDataDaoIntTest {
     @Test
     public void findByTicker(){
         String ticker = "AAPL";
-        IexQuote iexQuote = dao.findById(ticker).get();
-        assertEquals(ticker, iexQuote.getSymbol());
+        Optional<IexQuote> iexQuote = dao.findById(ticker);
+        assertEquals(ticker, iexQuote.get().getSymbol());
     }
 }
