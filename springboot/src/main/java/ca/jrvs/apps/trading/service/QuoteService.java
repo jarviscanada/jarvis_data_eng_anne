@@ -14,7 +14,6 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
@@ -45,13 +44,12 @@ public class QuoteService {
         // Get all quotes from the database.
         for (Quote quote: quotes){
             String ticker;
-            Optional<IexQuote> updatedMarketData;
 
             // For each ticker, obtain IEX quote.
             try {
                 ticker = quote.getTicker();
                 IexQuote iexQuote = findIexQuoteByTicker(ticker);
-                quote = buildIdQuoteFromIexQuote(iexQuote);
+                quote = buildQuoteFromIexQuote(iexQuote);
             } catch (IllegalArgumentException e){
                 throw new IllegalArgumentException("Cannot update entry due to invalid ticker.");
             } catch (DataAccessException e){
@@ -64,25 +62,43 @@ public class QuoteService {
 
     /**
      * Helper method. Map an IEX Quote to a Quote entity.
-     * Note: 'iexQuote.getLatestPrice() == null' if the stock market is closed.
-     * TODO: set default value for number field(s).
      * @param iexQuote
      * @return Quote
      */
-    protected static Quote buildIdQuoteFromIexQuote(IexQuote iexQuote){
+    protected static Quote buildQuoteFromIexQuote(IexQuote iexQuote){
         Quote quote = new Quote();
 
-        double askPrice = iexQuote.getIexAskPrice();
-        double askSize = iexQuote.getIexAskSize();
-        double bidPrice = iexQuote.getIexBidPrice();
-        double bidSize = iexQuote.getIexBidSize();
-        double lastPrice = iexQuote.getLatestPrice();
+        Double askPrice = iexQuote.getIexAskPrice();
+        Integer askSize = Math.toIntExact(iexQuote.getIexAskSize());
+        Double bidPrice = iexQuote.getIexBidPrice();
+        Integer bidSize = Math.toIntExact(iexQuote.getIexBidSize());
+        Double lastPrice = iexQuote.getLatestPrice();
 
-        quote.setAskPrice(askPrice);
-        quote.setAskSize((int)askSize);
-        quote.setBidPrice(bidPrice);
-        quote.setBidSize((int)bidSize);
-        quote.setLastPrice(lastPrice);
+        if (askPrice == null){
+            quote.setAskPrice(0d);
+        } else {
+            quote.setAskPrice(askPrice);
+        }
+        if (askSize == null){
+            quote.setAskSize(0);
+        } else {
+            quote.setAskSize(askSize);
+        }
+        if (bidPrice == null){
+            quote.setBidPrice(0d);
+        } else {
+            quote.setBidPrice(bidPrice);
+        }
+        if (bidSize == null){
+            quote.setBidSize(0);
+        } else {
+            quote.setBidSize(bidSize);
+        }
+        if (lastPrice == null){
+            quote.setLastPrice(0d);
+        } else {
+            quote.setLastPrice(lastPrice);
+        }
 
         return quote;
     }
@@ -122,7 +138,7 @@ public class QuoteService {
      */
     public Quote saveQuote(String ticker){
         IexQuote iexQuote = findIexQuoteByTicker(ticker);
-        Quote quote = buildIdQuoteFromIexQuote(iexQuote);
+        Quote quote = buildQuoteFromIexQuote(iexQuote);
         saveQuote(quote);
         return quote;
     }
