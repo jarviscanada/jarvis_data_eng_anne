@@ -11,12 +11,12 @@ public class ResponseExceptionUtil {
 
     public static ResponseStatusException getResponseStatusException(Exception e){
         if (e instanceof IllegalArgumentException) {
-            logger.debug("Invalid input", e);
+            logger.debug("Invalid input: ", e);
             return new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         } else {
-            logger.error("Internal Error", e);
+            logger.error("Internal Error: ", e);
             return new ResponseStatusException((HttpStatus.INTERNAL_SERVER_ERROR),
-                    "Internal error: please contact admin.");
+                    "Internal error: please contact administrator.");
         }
     }
 }

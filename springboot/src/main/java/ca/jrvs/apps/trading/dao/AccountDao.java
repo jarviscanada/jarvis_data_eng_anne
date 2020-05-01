@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.Optional;
 
 @Repository
 public class AccountDao extends JdbcCrudDao<Account> {
@@ -28,31 +27,51 @@ public class AccountDao extends JdbcCrudDao<Account> {
         this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME).usingGeneratedKeyColumns(ID_COLUMN);
     }
 
+    /**
+     * @return JDBC template.
+     */
     @Override
     public JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
+        return jdbcTemplate;
     }
 
+    /**
+     * @return JDBC insert.
+     */
     @Override
     public SimpleJdbcInsert getSimpleJdbcInsert() {
-        return this.simpleJdbcInsert;
+        return simpleJdbcInsert;
     }
 
+    /**
+     * @return table name.
+     */
     @Override
     public String getTableName() {
         return TABLE_NAME;
     }
 
+    /**
+     * @return ID column name.
+     */
     @Override
     public String getIdColumnName() {
         return ID_COLUMN;
     }
 
+    /**
+     * @return Account class.
+     */
     @Override
     Class<Account> getEntityClass() {
         return Account.class;
     }
 
+    /**
+     * Updates specified account's balance.
+     * @param id of the account
+     * @param updatedBalance for the account
+     */
     public void updateAmountById(Integer id, Double updatedBalance){
         Account account = findById(id).get();
         account.setAmount(updatedBalance);

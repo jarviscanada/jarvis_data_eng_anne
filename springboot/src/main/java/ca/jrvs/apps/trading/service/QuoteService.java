@@ -127,8 +127,13 @@ public class QuoteService {
     public List<Quote> saveQuotes(List<String> tickers){
         List<Quote> quotes = new ArrayList<Quote>();
         for (String ticker: tickers){
-            Quote quoteToSave = saveQuote(ticker);
-            quotes.add(quoteToSave);
+            try {
+                Quote quoteToSave = saveQuote(ticker);
+                quotes.add(quoteToSave);
+            } catch (IllegalArgumentException e){
+                logger.error("Invalid ticker (%s). " + e, ticker);
+                throw new IllegalArgumentException("Cannot save quote due to invalid ticker.");
+            }
         }
         return quotes;
     }
@@ -137,13 +142,21 @@ public class QuoteService {
      * Helper method.
      */
     public Quote saveQuote(String ticker){
-        IexQuote iexQuote = findIexQuoteByTicker(ticker);
-        Quote quote = buildQuoteFromIexQuote(iexQuote);
-        saveQuote(quote);
+        Quote quote;
+
+        try {
+            IexQuote iexQuote = findIexQuoteByTicker(ticker);
+            quote = buildQuoteFromIexQuote(iexQuote);
+            saveQuote(quote);
+        } catch (IllegalArgumentException e){
+            logger.error("Invalid ticker (%s). " + e, ticker);
+            throw new IllegalArgumentException("Cannot save quote due to invalid ticker.");
+        }
         return quote;
     }
 
     public Quote saveQuote(Quote quote){
+        validateQuote(quote);
         return quoteDao.save(quote);
     }
 
@@ -153,5 +166,19 @@ public class QuoteService {
      */
     public List<Quote> findAllQuotes(){
         return quoteDao.findAll();
+    }
+
+    private void validateQuote(Quote quote){
+        if (quote.getId().equals(null)){
+            throw new IllegalArgumentException("Quote missing ticker (null).");
+        } else if (quote.getId().isEmpty()) {
+            throw new IllegalArgumentException("Quote missing ticker (empty).");
+        } else if (quote.getLastPrice() < 0){
+            throw new IllegalArgumentException("Invalid last price.");
+        } else if (quote.getAskPrice() < 0 || quote.getBidPrice() < 0){
+            throw new IllegalArgumentException("Invalid ask/bid price.");
+        } else if (quote.getAskSize() < 0 || quote.getBidSize() < 0){
+            throw new IllegalArgumentException("Invalid ask/bid size.");
+        }
     }
 }

@@ -1,6 +1,5 @@
 package ca.jrvs.apps.trading.dao;
 
-import ca.jrvs.apps.trading.TestConfig;
 import ca.jrvs.apps.trading.model.domain.Quote;
 import org.junit.After;
 import org.junit.Before;

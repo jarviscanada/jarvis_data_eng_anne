@@ -27,26 +27,41 @@ public class TraderDao extends JdbcCrudDao<Trader> {
         this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME).usingGeneratedKeyColumns(ID_COLUMN);
     }
 
+    /**
+     * @return JDBC template.
+     */
     @Override
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
     }
 
+    /**
+     * @return JDBC insert.
+     */
     @Override
     public SimpleJdbcInsert getSimpleJdbcInsert() {
         return simpleJdbcInsert;
     }
 
+    /**
+     * @return table name.
+     */
     @Override
     public String getTableName() {
         return TABLE_NAME;
     }
 
+    /**
+     * @return ID column name.
+     */
     @Override
     public String getIdColumnName() {
         return ID_COLUMN;
     }
 
+    /**
+     * @return Trader class.
+     */
     @Override
     Class<Trader> getEntityClass() {
         return Trader.class;

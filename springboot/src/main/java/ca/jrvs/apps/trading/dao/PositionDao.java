@@ -27,26 +27,41 @@ public class PositionDao extends JdbcCrudDao<Position>  {
         this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME).usingGeneratedKeyColumns(ID_COLUMN);
     }
 
+    /**
+     * @return JDBC template.
+     */
     @Override
     public JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
+        return jdbcTemplate;
     }
 
+    /**
+     * @return JDBC insert.
+     */
     @Override
     public SimpleJdbcInsert getSimpleJdbcInsert() {
-        return this.simpleJdbcInsert;
+        return simpleJdbcInsert;
     }
 
+    /**
+     * @return table name.
+     */
     @Override
     public String getTableName() {
         return TABLE_NAME;
     }
 
+    /**
+     * @return ID column name.
+     */
     @Override
     public String getIdColumnName() {
         return ID_COLUMN;
     }
 
+    /**
+     * @return Position class.
+     */
     @Override
     Class<Position> getEntityClass() {
         return Position.class;

@@ -49,8 +49,8 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     /**
      * Helper method.
-     * @param entity
-     * @param <S>
+     * @param entity to be saved.
+     * @param <S> entity
      */
     private <S extends T> void addOne(S entity){
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(entity);
@@ -59,8 +59,18 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         entity.setId(newId.intValue());
     }
 
+    /**
+     * Helper method that updates one quote.
+     * @param entity to be updated.
+     * @return
+     */
     abstract public int updateOne(T entity);
 
+    /**
+     * Find an entity by its ID attribute.
+     * @param id of the entity
+     * @return the found entity.
+     */
     @Override
     public Optional<T> findById(Integer id){
         Optional<T> entity = Optional.empty();
@@ -74,6 +84,11 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return entity;
     }
 
+    /**
+     * Verifies if an entity exists for a specified ID attribute.
+     * @param id of the entity if it exists
+     * @return if an entity is associated with the given ID.
+     */
     @Override
     public boolean existsById(Integer id){
         Optional<T> entity = Optional.empty();
@@ -89,6 +104,10 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return true;
     }
 
+    /**
+     * Generates a list containing all of the entities in the database.
+     * @return a list with all of the existing entities.
+     */
     @Override
     public List<T> findAll(){
         Optional<T> entity = Optional.empty();
@@ -98,6 +117,11 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return items;
     }
 
+    /**
+     * Finds entities based on specified IDs and collects them into a list.
+     * @param ids for the entities to be collected.
+     * @return list of specified entities.
+     */
     @Override
     public List<T> findAllById(Iterable<Integer> ids){
         int idCount = 0;
@@ -114,6 +138,10 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return foundById;
     }
 
+    /**
+     * Remove an entity specified through its unique ID.
+     * @param id of the entity to be removed.
+     */
     @Override
     public void deleteById(Integer id){
         if (id < 1){
@@ -126,6 +154,10 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         getJdbcTemplate().update(deleteSQL, id);
     }
 
+    /**
+     * Counts the number of entity records in the database.
+     * @return a count of all the entity records.
+     */
     @Override
     public long count(){
         String selectSQL = "SELECT COUNT(*) FROM " + getTableName();
@@ -133,6 +165,9 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return count;
     }
 
+    /**
+     * Deletes all entity records.
+     */
     @Override
     public void deleteAll(){
         String deleteSQL = "DELETE FROM " + getTableName();

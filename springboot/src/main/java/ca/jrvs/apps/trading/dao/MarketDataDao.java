@@ -116,6 +116,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                         quotes.add(quote);
                     } catch (JSONException e){
                         logger.error("Ticker invalid: " + e);
+                        throw new IllegalArgumentException("Ticker is invalid.");
                     }
                 }
             } else {
