@@ -4,7 +4,7 @@ public class Position implements Entity<Integer> {
 
     private Integer accountID;
     private String ticker;
-    private Integer sum;
+    private Integer position;
 
     @Override
     public Integer getId() {
@@ -24,11 +24,11 @@ public class Position implements Entity<Integer> {
         this.ticker = ticker;
     }
 
-    public Integer getSum() {
-        return sum;
+    public Integer getPosition() {
+        return position;
     }
 
-    public void setSum(Integer sum) {
-        this.sum = sum;
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }
