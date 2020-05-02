@@ -12,13 +12,7 @@ Prior to pursuing a career in data science, I completed my first undergraduate d
 
 ## Development Projects
 
->Update Github link using markdown link syntax.
-
 Project source code: [Project source code.](https://github.com/jarviscanada/jarvis_data_eng_anne)
-
->The project description allows hiring managers to understand your project and technologies you used(e.g. programing langauge, libraries, algorithms, hardwards, tools, etc.). The project description must be at least 30 words.
-
->Use *Not started* as a placeholder
 
 - **[Cluster Monitor](./linux_sql)**: Cluster Monitor Agent is an internal tool that monitors the server cluster resources. It records the hardware specifications of each node (server) and monitors resource usage such as CPU and memory utilization in real time. The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity.
 
@@ -41,17 +35,17 @@ Project source code: [Project source code.](https://github.com/jarviscanada/jarv
 ## Education & Academic Projects
 
 **Ryerson University (2015-2019)**, Bachelors of Science, Computer Science
-- **Developer, Drone Simulator (C/C++):** Developed a user-controlled drone that can navigate a cityscape capable of shooting missiles, implemented drone and environment (buildings, roads) objects using modular design, implemented drone movement, rotation, collision detection, and toggleable cameras, used OpenGL/GLUT libraries, Phong lighting model, and texture mapping.
+- **Drone Simulator (C/C++):** Developed a user-controlled drone that can navigate a cityscape capable of shooting missiles, implemented drone and environment (buildings, roads) objects using modular design, implemented drone movement, rotation, collision detection, and toggleable cameras, used OpenGL/GLUT libraries, Phong lighting model, and texture mapping.
 
-- **Developer, Machine Learning Project (Python):** Utilized NumPy, Pandas, and Scikit-Learn to apply different machine learning concepts, cleaned and prepared datasets used to train Naïve-Bayes, logistic regression, and support vector machine learning models. Used 2000-2017 statistics representing 1,200 professional baseball players to train logistical regression and Naïve-Bayes learning models to predict 2018 performance.
+- **Machine Learning Project (Python):** Utilized NumPy, Pandas, and Scikit-Learn to apply different machine learning concepts, cleaned and prepared datasets used to train Naïve-Bayes, logistic regression, and support vector machine learning models. Used 2000-2017 statistics representing 1,200 professional baseball players to train logistical regression and Naïve-Bayes learning models to predict 2018 performance.
 
-- **Developer, Head's Up Badugi A.I. Player:** Created a competitive AI agent that played heads-up pot limit badugi capable of deciding cards to discard to improve winning likelihood and altering its bet aggression based on hand content, bluff preferences determined by win momentum. Placed 4th and tied for 6th place in two tournament runs with 20 and 21 AI participants.
+- **Head's Up Badugi A.I. Player:** Created a competitive AI agent that played heads-up pot limit badugi capable of deciding cards to discard to improve winning likelihood and altering its bet aggression based on hand content, bluff preferences determined by win momentum. Placed 4th and tied for 6th place in two tournament runs with 20 and 21 AI participants.
 
 **University of Waterloo (2014-2018)**, Bachelor of Science, Health Studies.
 
-- **Program Evaluator, NeuroFit Progam Evaluation Project:** Compiled information about program delivery and data collection methodology through a coordinator interview, reviewing existing program materials, and 4 on-site observations, conducted community scan and literature review to determine program need and efficacy in meeting program goals, and prepared written report outlining a detailed evaluation study plan for program stakeholders.
+- **NeuroFit Progam Evaluation Project:** Compiled information about program delivery and data collection methodology through a coordinator interview, reviewing existing program materials, and 4 on-site observations, conducted community scan and literature review to determine program need and efficacy in meeting program goals, and prepared written report outlining a detailed evaluation study plan for program stakeholders.
 
-- **Policy Analyst, Pharmacare & Catastrophic Drug Coverage Policy Brief:** Conducted literature review, researched existing catastrophic drug coverage plan, summarized policy options to address rising financial burden due to increasing pharmaceutical cost, and prepared written recommendations and proposed timeline for policy implementation.
+- **Pharmacare & Catastrophic Drug Coverage Policy Brief:** Conducted literature review, researched existing catastrophic drug coverage plan, summarized policy options to address rising financial burden due to increasing pharmaceutical cost, and prepared written recommendations and proposed timeline for policy implementation.
 
 ## Certificates & Awards & Activities
 
