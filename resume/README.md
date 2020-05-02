@@ -12,9 +12,9 @@ Prior to pursuing a career in data science, I completed my first undergraduate d
 
 ## Development Projects
 
-Project source code: [Project source code.](https://github.com/jarviscanada/jarvis_data_eng_anne)
+[Project source code.](https://github.com/jarviscanada/jarvis_data_eng_anne)
 
-- **[Cluster Monitor](./linux_sql)**: Cluster Monitor Agent is an internal tool that monitors the server cluster resources. It records the hardware specifications of each node (server) and monitors resource usage such as CPU and memory utilization in real time. The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity.
+- **[Cluster Monitor Agent](./linux_sql)**: An internal tool that monitors the server cluster resources. It records the hardware specifications of each node (server) and monitors resource usage such as CPU and memory utilization in real time. The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity.
 
 - **[Core Java Apps](./core_java)**: Three Java applications. (1) Java implementation of the grep Bash command-line utility used for searching through plain-text data sets for lines that match a text pattern. (2) Java application that allows users to connect to a PostgreSQL database and create, update, read, and delete data from its tables. (3) Command line application that allows its user to post, show, and delete Twitter posts using the Twitter REST API.
 
@@ -39,9 +39,9 @@ Project source code: [Project source code.](https://github.com/jarviscanada/jarv
 
 - **Machine Learning Project (Python):** Utilized NumPy, Pandas, and Scikit-Learn to apply different machine learning concepts, cleaned and prepared datasets used to train Naïve-Bayes, logistic regression, and support vector machine learning models. Used 2000-2017 statistics representing 1,200 professional baseball players to train logistical regression and Naïve-Bayes learning models to predict 2018 performance.
 
-- **Head's Up Badugi A.I. Player:** Created a competitive AI agent that played heads-up pot limit badugi capable of deciding cards to discard to improve winning likelihood and altering its bet aggression based on hand content, bluff preferences determined by win momentum. Placed 4th and tied for 6th place in two tournament runs with 20 and 21 AI participants.
+- **Head's Up Badugi A.I. Player (Java):** Created a competitive AI agent that played heads-up pot limit badugi capable of deciding cards to discard to improve winning likelihood and altering its bet aggression based on hand content, bluff preferences determined by win momentum. Placed 4th and tied for 6th place in two tournament runs with 20 and 21 AI participants.
 
-**University of Waterloo (2014-2018)**, Bachelor of Science, Health Studies.
+**University of Waterloo (2009-2014)**, Bachelor of Science, Health Studies.
 
 - **NeuroFit Progam Evaluation Project:** Compiled information about program delivery and data collection methodology through a coordinator interview, reviewing existing program materials, and 4 on-site observations, conducted community scan and literature review to determine program need and efficacy in meeting program goals, and prepared written report outlining a detailed evaluation study plan for program stakeholders.
 
