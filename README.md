@@ -28,6 +28,8 @@ Prior to pursuing a career in data science, I completed my first undergraduate d
 
 **Software Developer,  Jarvis, Toronto (2019-Present):** Completing a comprehensive training Bootcamp on core BigData technologies by industry experts and working on projects that include Cloud, DevOps, Java, Hadoop/Spark. Responsible for performing scrum master duties in Agile-based team projects to ensure team cohesion and collaboration.
 
+**Software Developer,  Jarvis, Toronto (2019-Present):** Completing a comprehensive development program on core BigData technologies used by industry experts and working on projects that include Cloud, DevOps, Java, Hadoop/Spark. Responsible for performing scrum master duties in Agile-based team projects to ensure team cohesion and collaboration.
+
 **Administrative/Clerical Assistant, Toronto (2015-2018):** Scanned and organized weekly invoices and over 5,000 donor documents for the transition from paper to electronic records. Entered, maintained, and updated database with current donor contact information. Provided timely clerical support to administration and marketing departments.
 
 **UI Designer, Toronto (2015):** Collaborated with a software developer to create a Bluetooth application. Designed user interface components such as recreating the company logo and menu navigation tabs with Adobe Photoshop CS3.
