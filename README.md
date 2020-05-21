@@ -12,7 +12,7 @@ Prior to pursuing a career in data science, I completed my first undergraduate d
 
 ## Development Projects
 
-[Project source code.](https://github.com/jarviscanada/jarvis_data_eng_anne)
+Project source code [https://github.com/jarviscanada/jarvis_data_eng_anne](https://github.com/jarviscanada/jarvis_data_eng_anne)
 
 - **[Cluster Monitor Agent](./linux_sql)**: An internal tool that monitors the server cluster resources. It records the hardware specifications of each node (server) and monitors resource usage such as CPU and memory utilization in real-time. The collected data is stored in a locally hosted PostgreSQL database on a designated primary server node. This tool allows for report generation, which can inform future resource planning such as adding or removing servers based on their usage and activity.
 
